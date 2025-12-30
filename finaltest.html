@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thi thử 88 câu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;background:#f4f6f8;padding:20px}
+.container{max-width:1100px;margin:auto;background:#fff;padding:20px;border-radius:8px}
+.question{border-bottom:1px solid #ddd;padding:12px 0}
+label{display:block;margin-left:20px;cursor:pointer}
+.correct{color:green;font-weight:bold}
+.wrong{color:red;font-weight:bold}
+#count{color:blue;font-weight:bold;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>Thi thử trắc nghiệm – 88 câu</h2>
+<div id="count"></div>
+<div id="quiz"></div>
+</div>
+
+<script>
+const questions = [
+{q:"Yong Cosmetics will not charge for items on back order until _ have left our warehouse.",a:["them","they","themselves","their"],c:1},
+{q:"Ms. Durkin asked for volunteers to help ___ with the employee fitness program.",a:["she","her","hers","herself"],c:1},
+{q:"Although the staff has grown, Mr. Lee continues to conduct all client meetings ___.",a:["he","him","his","himself"],c:3},
+{q:"Former Sendai Company CEO Ken Nakata spoke about ___ career experiences.",a:["he","his","him","himself"],c:1},
+{q:"According to the department head, ___ are ready to begin work on the Arborney project.",a:["us","we","our","ours"],c:1},
+{q:"The café has had many customers every day since it ___ last year.",a:["had renovated","have renovated","was renovating","was renovated"],c:3},
+{q:"The annual report will ___ until the latest company figures are ready.",a:["delayed","being delayed","be delayed","delaying"],c:2},
+{q:"Kennedy Sports will ___ its end-of-season sale through the month of January.",a:["continuing","continued","continues","continue"],c:3},
+{q:"Mr. Barrientos has worked at the company ___ six years.",a:["for","since","with","lately"],c:0},
+{q:"Last July, Rojas Riper LLC ___ a grand opening celebration.",a:["host","hosted","will host","is hosting"],c:1},
+
+{q:"The extended service plan includes a one-year ___ for replacement parts.",a:["receipt","warranty","certificate","payment"],c:1},
+{q:"After several successful projects, Ms. Ito received a well-deserved ___ to senior architect.",a:["promotion","intention","extension","addition"],c:0},
+{q:"Guests will receive a ___ beverage upon arrival at the resort.",a:["associate","complimentary","temporary","brief"],c:1},
+{q:"Heavy traffic ___ are expected near the construction site this afternoon.",a:["reception","delays","inventory","commitment"],c:1},
+{q:"Sales teams are trained to focus on ___ clients when introducing new products.",a:["attached","potential","equal","similar"],c:1},
+{q:"Mr. Nolan introduced the ___ speaker for the leadership seminar.",a:["opening","running","contacting","tracking"],c:0},
+{q:"Brightview Photography will host a free editing ___ for beginners this weekend.",a:["action","workshop","ticket","mixing"],c:1},
+{q:"Our office is ___ located near public transportation for customer convenience.",a:["briefly","exceedingly","conveniently","previously"],c:2},
+{q:"Employees who improve their qualifications may be eligible for a ___ salary.",a:["higher","closer","operated","attached"],c:0},
+{q:"The water park will close for two days due to routine ___ on its filtration system.",a:["maintenance","competition","extension","graduate"],c:0},
+
+{q:"Applications will be accepted ___ the end of next month.",a:["until","into","yet","while"],c:0},
+{q:"The new software runs faster ___ any previous version.",a:["to","past","than","by"],c:2},
+{q:"The support hotline is available ___ 8 A.M. and 10 P.M.",a:["always","between","in","only"],c:1},
+{q:"___ employee must wear an identification badge at all times.",a:["Each","All","Some","Many"],c:0},
+{q:"I stayed with the company ___ the commute was longer than I preferred.",a:["because","but","so","although"],c:3},
+{q:"The staff arrived early ___ they could prepare the venue before guests came.",a:["so that","because of","but","although"],c:0},
+{q:"Neither Ms. Chen ___ Mr. Gillespie had been notified that the board meeting was canceled.",a:["or","and","with","nor"],c:3},
+{q:"If your ID badge is lost, report it to the security office for a replacement ___.",a:["replacement","replacing","replace","replaces"],c:0},
+{q:"Please ___ the “Returns Section” of our Web site if you are unhappy with any part of your order.",a:["visit","visits","visited","visiting"],c:0},
+{q:"___ can be confirmed online or by speaking with a representative.",a:["Reserve","Reserved","Reservations","Reservable"],c:2},
+
+{q:"Please ___ any questions about time sheets to Tabitha Jones.",a:["direction","directive","directed","direct"],c:3},
+{q:"All employees must request ___ to the secure database.",a:["access","accessing","accessible","accessed"],c:0},
+{q:"The company launched a new program to improve the ___ of qualified engineers.",a:["recruit","recruiting","recruitment","recruiter"],c:2},
+{q:"Technicians received additional training to ensure safe ___.",a:["operate","operation","operative","operated"],c:1},
+{q:"The mail office will soon send packages more ___.",a:["quick","quicker","quickest","quickly"],c:3},
+{q:"Tickets will become ___ to the general public on Monday.",a:["effective","invalid","present","available"],c:3},
+{q:"One of the ___ for the position is three years of experience.",a:["associates","requirements","tips","assistants"],c:1},
+{q:"New marketing strategies will be ___ during next week’s meeting.",a:["addressed","discussed","notified","arranged"],c:1},
+{q:"Barton Airlines offers flights priced ___.",a:["temporarily","freely","reasonably","briefly"],c:2},
+{q:"Thanks to effective ___, the product launch succeeded.",a:["agreement","refreshment","promotion","inventory"],c:2},
+
+{q:"The elevators will be closed ___ for maintenance.",a:["formerly","annually","temporarily","cautiously"],c:2},
+{q:"To make an ___, clients can click on Schedule.",a:["example","option","individual","appointment"],c:3},
+{q:"Please ___ the number of seats from eight to ten.",a:["increase","reflect","merge","invite"],c:0},
+{q:"Weekend passes are ___ for six months.",a:["valid","accurate","original","actual"],c:0},
+{q:"Employees must ___ requests for time off.",a:["apply","submit","vacate","graduate"],c:1},
+{q:"The clinic offers treatment at an ___ rate.",a:["affords","affordable","affordably","affordability"],c:1},
+{q:"Among other ___, technicians maintain equipment.",a:["tasks","task","tasking","tasked"],c:0},
+{q:"We would like to ___ our gratitude.",a:["express","expressing","to express","expressed"],c:0},
+{q:"Customers may file a ___ about the billing system.",a:["complain","complaint","complaining","complained"],c:1},
+{q:"All equipment must undergo a thorough ___.",a:["inspect","inspection","inspecting","inspector"],c:1},
+{q:"The manager will review the budget ___.",a:["propose","proposing","proposed","proposal"],c:3},
+{q:"Ms. Calderon is responsible for the ___ of interns.",a:["supervise","supervisor","supervision","supervisory"],c:2},
+{q:"The sales team is preparing for tomorrow’s ___.",a:["negotiate","negotiation","negotiating","negotiable"],c:1},
+{q:"Applicants must provide a brief ___.",a:["described","describing","description","descriptive"],c:2},
+{q:"Employees should seek ___ before installing software.",a:["consult","consultant","consultation","consulting"],c:2},
+{q:"The company plans to open offices after the ___.",a:["establish","establishing","establishment","established"],c:2},
+{q:"Submit documents to guarantee the ___ processing.",a:["most efficient","efficiently","more efficiently","efficiency"],c:0},
+{q:"High temperatures may cause ___ damage.",a:["lastly","last","lasting","lasts"],c:2},
+{q:"The customer would like ___ a receipt.",a:["receive","to receive","receiving","received"],c:1},
+{q:"The hotel is ___ recommended for business travelers.",a:["high","highly","height","highest"],c:1},
+,{q:"After several successful projects, Ms. Ito received a well-deserved ___ to senior architect.",a:["promotion","intention","extension","addition"],c:0}
+,{q:"Guests will receive a ___ beverage upon arrival at the resort.",a:["associate","complimentary","temporary","brief"],c:1}
+,{q:"Heavy traffic ___ are expected near the construction site this afternoon.",a:["reception","delays","inventory","commitment"],c:1}
+,{q:"The ___ launch of the app was postponed due to a security update.",a:["scheduled","balanced","exceeded","purchased"],c:0}
+,{q:"Sales teams are trained to focus on ___ clients when introducing new products.",a:["attached","potential","equal","similar"],c:1}
+,{q:"Mr. Nolan introduced the ___ speaker for the leadership seminar.",a:["opening","running","contacting","tracking"],c:0}
+,{q:"Brightview Photography will host a free editing ___ for beginners this weekend.",a:["action","workshop","ticket","mixing"],c:1}
+,{q:"Our office is ___ located near public transportation for customer convenience.",a:["briefly","exceedingly","conveniently","previously"],c:2}
+,{q:"Employees who improve their qualifications may be eligible for a ___ salary.",a:["higher","closer","operated","attached"],c:0}
+,{q:"The water park will close for two days due to routine ___ on its filtration system.",a:["maintenance","competition","extension","graduate"],c:0}
+,{q:"All applicants must ___ an updated résumé with their online submission.",a:["reduce","submit","specialize","address"],c:1}
+,{q:"The committee ___ approved the proposal after weeks of discussion.",a:["exactly","temporarily","finally","regularly"],c:2}
+,{q:"Please keep your ___ if you plan to exchange the product within 30 days.",a:["receipt","modernization","quote","refund"],c:0}
+,{q:"The cafeteria stops ___ breakfast at 10:30 A.M.",a:["resolving","relocating","serving","requiring"],c:2}
+,{q:"The online store has received many positive reviews from ___ customers.",a:["satisfied","authorized","recruited","described"],c:0}
+,{q:"The new smartphones will be ___ at all major retailers starting Monday.",a:["available","modified","dependent","attachable"],c:0}
+,{q:"Employees who ___ to participate in the charity event should sign up by Friday.",a:["require","supply","wish","consult"],c:2}
+,{q:"New marketing strategies will be ___ during next week’s team meeting.",a:["addressed","discussed","notified","arranged"],c:1}
+,{q:"Barton Airlines is proud to offer flights priced ___ to support budget travelers.",a:["temporarily","freely","reasonably","briefly"],c:2}
+,{q:"Thanks to the effective ___ of Drinkever’s first beverage, last month’s product launch was a success.",a:["agreement","refreshment","promotion","inventory"],c:2}
+,{q:"The elevators in the north wing will be closed ___ for maintenance next week.",a:["formerly","annually","temporarily","cautiously"],c:2}
+,{q:"To make an ___, clients can click on “Schedule”.",a:["example","option","individual","appointment"],c:3}
+,{q:"For Friday’s dinner reservation, please ___ the number of seats.",a:["increase","reflect","merge","invite"],c:0}
+,{q:"Weekend passes to Lawton Amusement Park are ___ for six months.",a:["valid","accurate","original","actual"],c:0}
+,{q:"Employees must ___ requests for time off for approval.",a:["apply","submit","vacate","graduate"],c:1}
+,{q:"Tickets for Westbury Football games will become ___ to the public.",a:["effective","invalid","present","available"],c:3}
+,{q:"One of the ___ for the position is three years of experience.",a:["associates","requirements","tips","assistants"],c:1}
+];
+
+document.getElementById("count").innerText =
+  "Tổng số câu: " + questions.length;
+
+const quiz=document.getElementById("quiz");
+questions.forEach((q,i)=>{
+  const d=document.createElement("div");
+  d.className="question";
+  let h=`<b>Câu ${i+1}:</b> ${q.q}`;
+  q.a.forEach((opt,j)=>{
+    h+=`<label><input type="radio" name="q${i}" onclick="check(${i},${j})"> ${opt}</label>`;
+  });
+  h+=`<div id="r${i}"></div>`;
+  d.innerHTML=h;
+  quiz.appendChild(d);
+});
+
+function check(i,j){
+  document.getElementById("r"+i).innerHTML =
+    j===questions[i].c
+    ? "<span class='correct'>✔ Đúng</span>"
+    : "<span class='wrong'>✘ Sai</span>";
+}
+</script>
+
+</body>
+</html>
